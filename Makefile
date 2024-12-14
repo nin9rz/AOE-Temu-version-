@@ -6,7 +6,7 @@
 #    By: llinares <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/13 21:39:21 by llinares          #+#    #+#              #
-#    Updated: 2024/12/13 22:18:10 by llinares         ###   ########.fr        #
+#    Updated: 2024/12/14 00:55:07 by llinares         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,10 +25,10 @@ INCLUDES = include
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
-	$(CC) $(OBJECTS) $(LIB) -o $(NAME) -lm -I$(INCLUDES)
+	$(CC) $(OBJECTS) $(LIB) -o $(NAME) -lm -I$(INCLUDES) -g
 
 %.o: %.c
-	$(CC) -c $< -o $@ -I$(INCLUDES)
+	$(CC) -c $< -o $@ -I$(INCLUDES) -g
 
 clean:
 	rm -f $(OBJECTS)
