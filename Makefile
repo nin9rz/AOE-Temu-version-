@@ -6,13 +6,13 @@
 #    By: mbirou <mbirou@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/13 21:39:21 by llinares          #+#    #+#              #
-#    Updated: 2025/01/05 12:31:58 by mbirou           ###   ########.fr        #
+#    Updated: 2025/01/05 15:37:24 by mbirou           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = AOE_temu
 
-CC = gcc
+CC = gcc -g
 
 SOURCES = $(shell find src -name '*.c')
 

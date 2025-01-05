@@ -1,0 +1,9 @@
+{
+	"files.associations": {
+		"aoe_temu.h": "c",
+		"fcntl.h": "c",
+		"raylib.h": "c",
+		"cstdlib": "cpp",
+		"iosfwd": "cpp"
+	}
+}

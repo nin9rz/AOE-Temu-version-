@@ -3,74 +3,81 @@
 /*                                                        :::      ::::::::   */
 /*   map_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llinares <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mbirou <mbirou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 22:20:54 by llinares          #+#    #+#             */
-/*   Updated: 2024/12/14 01:46:20 by llinares         ###   ########.fr       */
+/*   Updated: 2025/01/05 20:48:43 by mbirou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "AOE_temu.h"
+#include <AOE_temu.h>
 
-static int	get_map_size(int *height, int *width)
+static int	mapDim(t_data *data, char *filename)
 {
 	FILE	*file;
 	char	*line;
-	size_t	size;
+	size_t	lineLen = 1;
 
-	size = 1;
-	*height = 0;
-	*width = 0;
-	file = fopen("map.feur", "r");
-	line = calloc(1,1);
+	file = fopen(filename, "r");
 	if (!file)
 		return (0);
-	while (getline(&line, &size, file) != -1)
+	line = calloc(1, 1);
+	while (getline(&line, &lineLen, file) != -1)
 	{
-		if (!line)
+		data->map->height ++;
+		if (data->map->width == 0)
+			data->map->width = strlen(line);
+		else if (data->map->width != strlen(line))
+		{
+			fclose(file);
 			return (0);
-		if (*width == 0)
-			*width = strlen(line);
+		}
 		free(line);
-		size = 1;
-		*height = *height + 1;
-		line = calloc(1,1);
+		line = calloc(1, 1);
+		lineLen = 1;
 	}
-	if (fclose(file) == EOF)
-		return (0);
+	fclose(file);
 	return (1);
 }
 
-int	parse_map(t_data *data)
+static t_tile *setupMapLine(t_data *data, char *line)
+{
+	t_tile	*mapLine;
+	int		i = -1;
+
+	mapLine = calloc(data->map->width, sizeof(*mapLine));
+	while(++i < data->map->width)
+	{
+		mapLine[i].status = IDLE;
+		mapLine[i].txt = line[i] - '0';
+		mapLine[i].health = 10;//    a changer par rapport au troups
+		mapLine[i].maxHealth = 10;//    a changer par rapport au troups
+	}
+	return (mapLine);
+}
+
+int	mapParse(t_data *data, char *filename)
 {
 	FILE	*file;
-	int		y;
-	int		x;
-	char	c[2];
+	char	*line;
+	size_t	lineLen = 1;
+	int		i = 0;
 
-	if (!get_map_size(&data->map.height, &data->map.width))
+	if (!mapDim(data, filename))
 		return (0);
-	file = fopen("map.feur", "r");
-	data->map.array = calloc(data->map.height, sizeof(t_tile*));
-	y = 0;
-	x = 0;
-	c[1] = 0;
-	while (fscanf(file, "%c", &c[0]) != EOF)
+	data->map->tiles = calloc(data->map->height, sizeof(*data->map->tiles));
+	file = fopen(filename, "r");
+	if (!file)
+		return (0);
+	line = calloc(1, 1);
+	while (getline(&line, &lineLen, file) != -1)
 	{
-		if (c[0] != '\n')
-		{
-			data->map.array[y] = (t_tile *)calloc(data->map.width, sizeof(t_tile));
-			data->map.array[y][x].tile_index = atoi(c);
-			data->map.array[y][x].img = &data->textures.array[atoi(c)];
-			x++;
-		}
-		else
-		{
-			y++;
-			x = 0;
-		}
+		data->map->tiles[i] = setupMapLine(data, line);
+		free(line);
+		line = calloc(1, 1);
+		lineLen = 1;
+		i ++;
 	}
-	if (fclose(file) == EOF)
-		return (0);
+	fclose(file);
 	return (1);
 }
