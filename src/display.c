@@ -6,7 +6,7 @@
 /*   By: mbirou <mbirou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 16:37:35 by mbirou            #+#    #+#             */
-/*   Updated: 2025/01/05 20:56:01 by mbirou           ###   ########.fr       */
+/*   Updated: 2025/01/06 12:04:11 by mbirou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ static void	showTileHud(t_data *data)
 	char	*healthRatio;
 
 	DrawTexture(data->textures->botHud, 199, 812, (Color){220, 220, 220, 255});
-	DrawTexture(data->textures->bigTxts[GRASS], 199, 812, WHITE);
 	if (data->map->lastSelected.x != -1)
 	{
+		DrawTexture(data->textures->bigTxts[GRASS], 199, 812, WHITE);
 		if (data->map->tiles[(int)data->map->lastSelected.y][(int)data->map->lastSelected.x].txt != GRASS)
 			hp = data->map->tiles[(int)data->map->lastSelected.y][(int)data->map->lastSelected.x].health;
 		maxHp = data->map->tiles[(int)data->map->lastSelected.y][(int)data->map->lastSelected.x].maxHealth;
@@ -37,6 +37,7 @@ static void	showTileHud(t_data *data)
 	}
 	else if (data->map->lastHover.x != -1)
 	{
+		DrawTexture(data->textures->bigTxts[GRASS], 199, 812, WHITE);
 		if (data->map->tiles[(int)data->map->lastHover.y][(int)data->map->lastHover.x].txt != GRASS)
 			hp = data->map->tiles[(int)data->map->lastHover.y][(int)data->map->lastHover.x].health;
 		maxHp = data->map->tiles[(int)data->map->lastHover.y][(int)data->map->lastHover.x].maxHealth;

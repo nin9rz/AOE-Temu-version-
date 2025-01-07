@@ -6,7 +6,7 @@
 /*   By: mbirou <mbirou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 21:33:17 by llinares          #+#    #+#             */
-/*   Updated: 2025/01/05 20:55:31 by mbirou           ###   ########.fr       */
+/*   Updated: 2025/01/07 17:31:24 by mbirou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,11 @@ int	main(int argc, char **argv)
 	t_data	data;
 
 	data.coins = 2147483647;
+	if (argc != 2)
+	{
+		printf("Enter a map chigga\n");
+		return (1);
+	}
 	launchRaylib(&data);
 	if (!mapParse(&data, argv[1]))
 	{
