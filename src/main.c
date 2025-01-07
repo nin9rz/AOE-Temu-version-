@@ -6,34 +6,11 @@
 /*   By: mbirou <mbirou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 21:33:17 by llinares          #+#    #+#             */
-/*   Updated: 2025/01/07 17:31:24 by mbirou           ###   ########.fr       */
+/*   Updated: 2025/01/07 17:50:13 by mbirou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <AOE_temu.h>
-
-void	launchRaylib(t_data *data)
-{
-	InitWindow(1010, 1010, "AOE Temu-Version");
-	initTextures(data);
-	initMap(data);
-	SetTargetFPS(60);
-	DisableEventWaiting();
-}
-
-void	launchGame(t_data *data)
-{
-	while (!WindowShouldClose())
-	{
-		BeginDrawing();
-		ClearBackground((Color){100, 100, 100, 255});
-		handleInputs(data);
-		handleMouse(data);
-		drawScreen(data);
-		EndDrawing();
-	}
-	CloseWindow();
-}
 
 void	freeStructs(t_data *data)
 {
@@ -54,6 +31,31 @@ void	freeStructs(t_data *data)
 	free(data->map);
 }
 
+void	launchRaylib(t_data *data)
+{
+	InitWindow(1010, 1010, "AOE Temu-Version");
+	initTextures(data);
+	initMap(data);
+	SetTargetFPS(60);
+	DisableEventWaiting();
+}
+
+void	launchGame(t_data *data)
+{
+	while (!WindowShouldClose())
+	{
+		BeginDrawing();
+		ClearBackground((Color){100, 100, 100, 255});
+		handleMoveKeyInputs(data);
+		handleMoveMouseInputs(data);
+		handleMouse(data);
+		drawScreen(data);
+		EndDrawing();
+	}
+	freeStructs(data);
+	CloseWindow();
+}
+
 int	main(int argc, char **argv)
 {
 	t_data	data;
@@ -71,6 +73,5 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	launchGame(&data);
-	freeStructs(&data);
 	return (0);
 }

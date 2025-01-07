@@ -6,7 +6,7 @@
 /*   By: mbirou <mbirou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 22:10:02 by llinares          #+#    #+#             */
-/*   Updated: 2025/01/05 20:48:05 by mbirou           ###   ########.fr       */
+/*   Updated: 2025/01/07 17:52:19 by mbirou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	drawScreen(t_data *data);
 **		keys.c			**
 **************************/
 
-void	handleInputs(t_data *data);
+void	handleMoveKeyInputs(t_data *data);
 
 
 /*************************
@@ -113,5 +113,6 @@ void	handleInputs(t_data *data);
 **************************/
 
 void	handleMouse(t_data *data);
+void	handleMoveMouseInputs(t_data *data);
 
 #endif

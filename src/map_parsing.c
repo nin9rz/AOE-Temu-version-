@@ -6,7 +6,7 @@
 /*   By: mbirou <mbirou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 22:20:54 by llinares          #+#    #+#             */
-/*   Updated: 2025/01/05 20:48:43 by mbirou           ###   ########.fr       */
+/*   Updated: 2025/01/07 17:41:33 by mbirou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ static int	mapDim(t_data *data, char *filename)
 		line = calloc(1, 1);
 		lineLen = 1;
 	}
+	free(line);
 	fclose(file);
 	return (1);
 }
@@ -78,6 +79,7 @@ int	mapParse(t_data *data, char *filename)
 		lineLen = 1;
 		i ++;
 	}
+	free(line);
 	fclose(file);
 	return (1);
 }

@@ -6,7 +6,7 @@
 #    By: mbirou <mbirou@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/13 21:39:21 by llinares          #+#    #+#              #
-#    Updated: 2025/01/05 15:37:24 by mbirou           ###   ########.fr        #
+#    Updated: 2025/01/07 18:07:48 by mbirou           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ raylib:
 
 $(NAME): raylib $(OBJECTS)
 	$(CC) $(OBJECTS) $(LIB) -o $(NAME) -lm -I$(INCLUDES) -g
+	make -C . clean
 
 %.o: %.c
 	$(CC) -c $< -o $@ -I$(INCLUDES) -g

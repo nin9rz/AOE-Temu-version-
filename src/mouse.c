@@ -6,7 +6,7 @@
 /*   By: mbirou <mbirou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 17:46:31 by mbirou            #+#    #+#             */
-/*   Updated: 2025/01/05 20:46:46 by mbirou           ###   ########.fr       */
+/*   Updated: 2025/01/07 17:56:12 by mbirou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,14 @@ void	handleMouse(t_data *data)
 		data->map->tiles[(int)pos.y][(int)pos.x].status = HOVER;
 	}
 	HandleClicks(data, pos, 1);
+}
+
+void	handleMoveMouseInputs(t_data *data)
+{
+	(void)data;
+	if (IsMouseButtonDown(MOUSE_BUTTON_MIDDLE))
+	{
+		data->map->cam.x -= GetMouseDelta().x * ((float)NBCOLUMN / (float)WINDOWWIDTH);
+		data->map->cam.y -= GetMouseDelta().y * ((float)NBROW / (float)WINDOWHEIGHT);
+	}
 }
