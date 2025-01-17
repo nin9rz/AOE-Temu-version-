@@ -6,7 +6,7 @@
 /*   By: mbirou <mbirou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 16:37:35 by mbirou            #+#    #+#             */
-/*   Updated: 2025/01/06 12:04:11 by mbirou           ###   ########.fr       */
+/*   Updated: 2025/01/17 19:25:13 by mbirou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,15 +70,15 @@ static void	showGrid(t_data *data)
 			if ((x + cx) < 0 || (x + cx) >= data->map->width || (y + cy) < 0 || (y + cy) >= data->map->height)
 				continue ;
 			if (data->map->tiles[(y + cy)][(x + cx)].status == IDLE)
-				DrawTexture(data->textures->txts[GRASS], x * GRIDWIDTH + 201, y * GRIDHEIGHT + 11, WHITE);
+				DrawTexture(data->textures->txts[GRASS], x * GRIDWIDTH + 200, y * GRIDHEIGHT + 10, WHITE);
 			else if (data->map->tiles[(y + cy)][(x + cx)].status == SELECTED)
-				DrawTexture(data->textures->txts[GRASS], x * GRIDWIDTH + 201, y * GRIDHEIGHT + 11, GREEN);
+				DrawTexture(data->textures->txts[GRASS], x * GRIDWIDTH + 200, y * GRIDHEIGHT + 10, GREEN);
 			else if (data->map->tiles[(y + cy)][(x + cx)].status == HOVER)
-				DrawTexture(data->textures->txts[GRASS], x * GRIDWIDTH + 201, y * GRIDHEIGHT + 11, DARKGREEN);
+				DrawTexture(data->textures->txts[GRASS], x * GRIDWIDTH + 200, y * GRIDHEIGHT + 10, DARKGREEN);
 			if (data->map->tiles[(y + cy)][(x + cx)].txt == CAMP)
-				DrawTexture(data->textures->txts[CAMP], x * GRIDWIDTH + 201, y * GRIDHEIGHT + 11, WHITE);
+				DrawTexture(data->textures->txts[CAMP], x * GRIDWIDTH + 200, y * GRIDHEIGHT + 10, WHITE);
 			else if (data->map->tiles[(y + cy)][(x + cx)].txt == TANK)
-				DrawTexture(data->textures->txts[TANK], x * GRIDWIDTH + 201, y * GRIDHEIGHT + 11, WHITE);
+				DrawTexture(data->textures->txts[TANK], x * GRIDWIDTH + 200, y * GRIDHEIGHT + 10, WHITE);
 		}
 	}
 }

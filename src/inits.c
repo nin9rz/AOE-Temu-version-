@@ -6,7 +6,7 @@
 /*   By: mbirou <mbirou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 16:36:04 by mbirou            #+#    #+#             */
-/*   Updated: 2025/01/05 20:08:34 by mbirou           ###   ########.fr       */
+/*   Updated: 2025/01/17 19:24:44 by mbirou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ void	initTextures(t_data *data)
 	data->textures->background = getTxt("textures/background.png", 1010, 1010);
 	data->textures->botHud = getTxt("textures/background.png", 801, 188);
 
-	data->textures->txts[0] = getTxt("textures/grass.png", 48, 48);
-	data->textures->txts[1] = getTxt("textures/camp.png", 48, 48);
-	data->textures->txts[2] = getTxt("textures/tank.png", 48, 48);
+	data->textures->txts[0] = getTxt("textures/grass.png", GRIDWIDTH, GRIDHEIGHT);
+	data->textures->txts[1] = getTxt("textures/camp.png", GRIDWIDTH, GRIDHEIGHT);
+	data->textures->txts[2] = getTxt("textures/tank.png", GRIDWIDTH, GRIDHEIGHT);
 
 	data->textures->bigTxts[0] = getTxt("textures/grass.png", 188, 188);
 	data->textures->bigTxts[1] = getTxt("textures/camp.png", 188, 188);
