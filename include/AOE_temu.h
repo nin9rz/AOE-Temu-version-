@@ -6,7 +6,7 @@
 /*   By: mbirou <mbirou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 22:10:02 by llinares          #+#    #+#             */
-/*   Updated: 2025/01/17 19:23:49 by mbirou           ###   ########.fr       */
+/*   Updated: 2025/01/18 15:14:48 by mbirou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@
 # include <stdlib.h>
 # include <string.h>
 
-# define WINDOWWIDTH 800
-# define WINDOWHEIGHT 800
-# define GRIDWIDTH 50
-# define GRIDHEIGHT 50
+# define WINDOWWIDTH 800.F
+# define WINDOWHEIGHT 800.F
+# define GRIDWIDTH 50.F
+# define GRIDHEIGHT 50.F
 # define NBCOLUMN WINDOWWIDTH / GRIDWIDTH
 # define NBROW WINDOWHEIGHT / GRIDHEIGHT
 
