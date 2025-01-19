@@ -6,7 +6,7 @@
 /*   By: mbirou <mbirou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 16:37:35 by mbirou            #+#    #+#             */
-/*   Updated: 2025/01/17 19:25:13 by mbirou           ###   ########.fr       */
+/*   Updated: 2025/01/19 15:21:25 by mbirou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,35 +58,34 @@ static void	showGrid(t_data *data)
 {
 	int	x;
 	int	y = -1;
-	int	cx = data->map->cam.x - NBCOLUMN / 2;
-	int	cy = data->map->cam.y - NBROW / 2;
+	float	cx = data->map->cam.x - NBCOLUMN / 2.F;
+	float	cy = data->map->cam.y - NBROW / 2.F;
 
-	DrawRectangle(199, 9, 802, 802, BLACK);
-	while (++y < NBROW)
+	DrawRectangle(0, 0, SCREENWIDTH, SCREENHEIGHT, BLACK);
+	while (++y < NBROW + 1)
 	{
 		x = - 1;
-		while (++x < NBCOLUMN)
+		while (++x < NBCOLUMN + 1)
 		{
-			if ((x + cx) < 0 || (x + cx) >= data->map->width || (y + cy) < 0 || (y + cy) >= data->map->height)
+			if ((int)(x + cx) < 0 || (int)(x + cx) >= data->map->width || (int)(y + cy) < 0 || (int)(y + cy) >= data->map->height)
 				continue ;
-			if (data->map->tiles[(y + cy)][(x + cx)].status == IDLE)
-				DrawTexture(data->textures->txts[GRASS], x * GRIDWIDTH + 200, y * GRIDHEIGHT + 10, WHITE);
-			else if (data->map->tiles[(y + cy)][(x + cx)].status == SELECTED)
-				DrawTexture(data->textures->txts[GRASS], x * GRIDWIDTH + 200, y * GRIDHEIGHT + 10, GREEN);
-			else if (data->map->tiles[(y + cy)][(x + cx)].status == HOVER)
-				DrawTexture(data->textures->txts[GRASS], x * GRIDWIDTH + 200, y * GRIDHEIGHT + 10, DARKGREEN);
-			if (data->map->tiles[(y + cy)][(x + cx)].txt == CAMP)
-				DrawTexture(data->textures->txts[CAMP], x * GRIDWIDTH + 200, y * GRIDHEIGHT + 10, WHITE);
-			else if (data->map->tiles[(y + cy)][(x + cx)].txt == TANK)
-				DrawTexture(data->textures->txts[TANK], x * GRIDWIDTH + 200, y * GRIDHEIGHT + 10, WHITE);
+			if (data->map->tiles[(int)(y + cy)][(int)(x + cx)].status == IDLE)
+				DrawTexture(data->textures->txts[GRASS], x * GRIDSIZE - cx, y * GRIDSIZE - cy, WHITE);
+			else if (data->map->tiles[(int)(y + cy)][(int)(x + cx)].status == SELECTED)
+				DrawTexture(data->textures->txts[GRASS], x * GRIDSIZE - cx, y * GRIDSIZE - cy, GREEN);
+			else if (data->map->tiles[(int)(y + cy)][(int)(x + cx)].status == HOVER)
+				DrawTexture(data->textures->txts[GRASS], x * GRIDSIZE - cx, y * GRIDSIZE - cy, DARKGREEN);
+			if (data->map->tiles[(int)(y + cy)][(int)(x + cx)].txt == CAMP)
+				DrawTexture(data->textures->txts[CAMP], x * GRIDSIZE - cx, y * GRIDSIZE - cy, WHITE);
+			else if (data->map->tiles[(int)(y + cy)][(int)(x + cx)].txt == TANK)
+				DrawTexture(data->textures->txts[TANK], x * GRIDSIZE - cx, y * GRIDSIZE - cy, WHITE);
 		}
 	}
 }
 
 void	drawScreen(t_data *data)
 {
-	DrawTexture(data->textures->background, 0, 0, (Color){150, 150, 150, 255});
-	showTileHud(data);
-	showLefthud(data);
+	// DrawTexture(data->textures->background, 0, 0, (Color){150, 150, 150, 255});
+	// showTileHud(data);
 	showGrid(data);
 }

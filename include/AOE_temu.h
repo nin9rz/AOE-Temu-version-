@@ -6,7 +6,7 @@
 /*   By: mbirou <mbirou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 22:10:02 by llinares          #+#    #+#             */
-/*   Updated: 2025/01/18 15:14:48 by mbirou           ###   ########.fr       */
+/*   Updated: 2025/01/19 15:00:34 by mbirou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,14 @@
 # include <stdlib.h>
 # include <string.h>
 
-# define WINDOWWIDTH 800.F
-# define WINDOWHEIGHT 800.F
-# define GRIDWIDTH 50.F
-# define GRIDHEIGHT 50.F
-# define NBCOLUMN WINDOWWIDTH / GRIDWIDTH
-# define NBROW WINDOWHEIGHT / GRIDHEIGHT
+# define NBTXT = 3;
+
+extern float SCREENWIDTH;
+extern float SCREENHEIGHT;
+extern float GRIDSIZE;
+extern float GRIDSIZE;
+extern float NBCOLUMN;
+extern float NBROW;
 
 typedef enum	e_textures
 {
@@ -46,6 +48,7 @@ typedef enum	e_status
 
 typedef struct s_textures
 {
+	Image		imgs[3];
 	Texture2D	txts[3];
 	Texture2D	bigTxts[3];
 	Texture2D	background;
@@ -83,8 +86,7 @@ typedef struct	s_data
 **		inits.c			**
 **************************/
 
-void	initTextures(t_data *data);
-void	initMap(t_data *data);
+void	inits(t_data *data);
 
 
 /*************************

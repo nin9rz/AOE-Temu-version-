@@ -4,6 +4,7 @@
 		"fcntl.h": "c",
 		"raylib.h": "c",
 		"cstdlib": "cpp",
-		"iosfwd": "cpp"
+		"iosfwd": "cpp",
+		"string.h": "c"
 	}
 }

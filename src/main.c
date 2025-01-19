@@ -6,11 +6,17 @@
 /*   By: mbirou <mbirou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 21:33:17 by llinares          #+#    #+#             */
-/*   Updated: 2025/01/18 18:49:17 by mbirou           ###   ########.fr       */
+/*   Updated: 2025/01/19 15:01:06 by mbirou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <AOE_temu.h>
+
+float SCREENWIDTH = 1010.F;
+float SCREENHEIGHT = 1010.F;
+float GRIDSIZE = 50.F;
+float NBCOLUMN = 50.F;
+float NBROW =  50.F;
 
 void	freeStructs(t_data *data)
 {
@@ -34,8 +40,7 @@ void	freeStructs(t_data *data)
 void	launchRaylib(t_data *data)
 {
 	InitWindow(1010, 1010, "AOE Temu-Version");
-	initTextures(data);
-	initMap(data);
+	inits(data);
 	SetTargetFPS(60);
 	DisableEventWaiting();
 }
@@ -46,10 +51,13 @@ void	launchGame(t_data *data)
 	{
 		BeginDrawing();
 		ClearBackground((Color){100, 100, 100, 255});
-		handleMoveKeyInputs(data);
-		handleMoveMouseInputs(data);
-		handleMouse(data);
-		drawScreen(data);
+		if (IsWindowFocused())
+		{
+			handleMoveKeyInputs(data);
+			// handleMoveMouseInputs(data);
+			handleMouse(data);
+			drawScreen(data);
+		}
 		EndDrawing();
 	}
 	freeStructs(data);
@@ -60,7 +68,6 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
-	data.coins = 2147483647;
 	if (argc != 2)
 	{
 		printf("Enter a map chigga\n");
